@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     el: "#app",
     data: {
       allCountries: [],
-      selectedCountry: ""
+      selectedCountry: "",
+      favouriteCountries: [{
+          name: "",
+          population: ""
+        }
+      ]
     },
     mounted(){
       this.fetchCountry();
@@ -23,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => this.allCountries = data)
       },
+      saveFavouriteCountry: function () {
+        this.favouriteCountries.push({
+          name: this.selectedCountry.name,
+          population: this.selectedCountry.population
+        })
+      }
     }
   })
 });

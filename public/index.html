@@ -4,20 +4,23 @@
   <meta charset="utf-8">
   <title>Countries App</title>
   <script src="./js/bundle.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
   <div id="app">
     <h1>Countries App</h1>
     <h3>Select Country to learn more.</h3>
-    <select v-model="selectedCountry">
-      <option v-for="country in allCountries" v-bind:value="country">{{ country.name }}</option>
-    </select>
+    <form v-on:submit.prevent="saveFavouriteCountry">
+      <select v-model="selectedCountry">
+        <option v-for="country in allCountries" v-bind:value="country">{{ country.name }}</option>
+      </select>
+      <input type="submit" value="Save Favourite Country">
+    </form>
     <hr>
     <img id="flag-img" v-if="selectedCountry" :src="selectedCountry.flag">
     <h4 v-if="selectedCountry">{{ selectedCountry.name }}</h4>
     <p v-if="selectedCountry">Population: {{ selectedCountry.population }}</p>
-
     <hr>
     <h3>Total World Population: {{ totalPopulation }}</h3>
   </div>
